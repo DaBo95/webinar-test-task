@@ -10,7 +10,9 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import { makeStyles } from '@material-ui/core/styles';
 import classnames from 'classnames';
 import { motion } from 'framer-motion';
-import { TodoItem, useTodoItems } from './TodoItemsContext';
+import { useTodoItems } from '../store/hooks';
+import { TodoItem } from "../store/types";
+import EditForm from './EditForm';
 
 const spring = {
     type: 'spring',
@@ -91,9 +93,12 @@ export const TodoItemCard = function ({ item }: { item: TodoItem }) {
         >
             <CardHeader
                 action={
-                    <IconButton aria-label="delete" onClick={handleDelete}>
-                        <DeleteIcon />
-                    </IconButton>
+                    <>
+                        <IconButton aria-label="delete" onClick={handleDelete}>
+                            <DeleteIcon />
+                        </IconButton>
+                        <EditForm item={item} />
+                    </>
                 }
                 title={
                     <FormControlLabel
