@@ -48,6 +48,11 @@ export function todoItemsReducer(
           ...state.todoItems.slice(itemIndex + 1),
         ],
       };
+      case "reorder":
+      return {
+        ...state,
+        todoItems: [...action.data.todoItems],
+      };
     default:
       throw new Error();
   }
